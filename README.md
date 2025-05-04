@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Redirect</title>
+    <title>Fun Redirect</title>
     <style>
         /* Basic Reset */
         * {
@@ -12,46 +12,59 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #282c34;
-            color: white;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
             flex-direction: column;
-        }
-        .container {
+            overflow: hidden;
             text-align: center;
         }
         h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+            color: #ff6b81;
+            animation: bounceIn 2s ease;
         }
         p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            color: #aaa;
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            color: #6a1b9a;
             animation: fadeIn 3s ease-in-out;
         }
         .redirect-btn {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: white;
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            padding: 20px 50px;
+            font-size: 1.5em;
+            background: radial-gradient(circle, #ff5f6d, #ffc3a0);
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
             outline: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 95, 109, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
         }
         .redirect-btn:hover {
-            background: linear-gradient(45deg, #2575fc, #6a11cb);
             transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 95, 109, 0.6);
         }
-        /* Animation for fade-in effect */
+        .redirect-btn:active {
+            transform: scale(0.95);
+        }
+        .cloud {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: url('https://cdn.pixabay.com/photo/2017/08/30/00/58/cloud-2695367_960_720.png') no-repeat;
+            width: 150px;
+            height: 90px;
+            animation: cloudMove 5s infinite linear;
+        }
+        /* Animations */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -62,15 +75,39 @@
                 transform: translateY(0);
             }
         }
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(30px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes cloudMove {
+            0% {
+                transform: translateX(-50%);
+            }
+            50% {
+                transform: translateX(30%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome to Our Website!</h1>
-        <p>Click the button below to visit another page</p>
-        <button class="redirect-btn" onclick="redirectToPage()">Go to us.html</button>
-    </div>
+    <div class="cloud"></div>
+    
+    <h1>Yay, You're Here!</h1>
+    <p>Click below to go to our special page!</p>
+    <button class="redirect-btn" onclick="redirectToPage()">Go to us.html</button>
 
     <script>
         function redirectToPage() {
