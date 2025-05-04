@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Beautiful Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Raleway:wght@600&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background with color-changing pattern */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, #ff8c8c, #ffa7c1, #a7c6ed, #f1e3fb);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Fun, quirky fonts and colors */
+    h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 4rem;
+      color: #ff6a95;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+      margin-top: 60px;
+      animation: bounceIn 2s ease-in-out;
+    }
+
+    p {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: #fff;
+      max-width: 900px;
+      margin: 20px auto;
+      animation: fadeIn 2s ease-in-out;
+      font-style: italic;
+    }
+
+    /* Centering the 'For You' button with surrounding photos */
+    .center-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+      height: auto;
+      margin-top: 100px;
+    }
+
+    /* Styling for images */
+    .photo-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .photo {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/pw_maze.png');
+      background-size: cover;
+      animation: photoAnim 4s ease infinite alternate;
+    }
+
+    @keyframes photoAnim {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(15deg); }
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .photo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Fun Button Styling with Gradient Effect */
+    .button {
+      background: linear-gradient(45deg, #ff0000, #000000, #ffd700);
+      color: white;
+      border: none;
+      padding: 18px 60px;
+      margin-top: 30px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: background 1s ease, transform 0.3s ease;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(45deg, #ffd700, #000000, #ff0000);
+    }
+
+    /* Poetic Proposal Styling (Pop-up effect) */
+    .proposal-text {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: #fffcf2;
+      text-align: center;
+      margin-top: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+      animation: fadeIn 1s ease-in-out, popUp 0.6s ease-in-out;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 20px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      opacity: 0;
+    }
+
+    @keyframes popUp {
+      0% { transform: translate(-50%, -50%) scale(0.5); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* Overlay Background */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Custom Links */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px 0;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .navbar .links a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6a95;
+      margin: 0 25px;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      padding: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background-image: linear-gradient(45deg, #ff6a95, #ff98b7, #f1c6ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar .links a:hover {
+      color: #fff;
+      transform: scale(1.2);
+    }
+
+    /* Responsive Design for Smaller Screens */
+    @media (max-width: 768px) {
+      .photo-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo {
+        width: 200px;
+        height: 200px;
+      }
+
+      .navbar .links a {
+        font-size: 1.2rem;
+        margin: 0 15px;
+      }
+
+      .button {
+        font-size: 1.3rem;
+        padding: 14px 50px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.3rem;
+        max-width: 700px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .photo-wrapper {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .navbar .links a {
+        font-size: 1rem;
+        margin: 0 10px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        max-width: 600px;
+      }
+
+      .button {
+        font-size: 1.1rem;
+        padding: 12px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Navigation Bar -->
+  <div class="navbar">
+    <div class="links">
+      <a href="#aboutUs" onclick="showAboutUs()">About Us</a>
+      <a href="#memories" onclick="showMemories()">Our Memories</a>
+      <a href="#future" onclick="showFuturePlans()">Our Future</a>
+    </div>
+  </div>
+
+  <!-- Centered Button with Images Above -->
+  <div class="center-container">
+    <div class="photo-wrapper">
+      <!-- Images above the 'For You' button -->
+      <div class="photo" onclick="openPhoto('image1.jpg')">
+        <img src="image1.jpeg" alt="First Adventure">
+      </div>
+      <div class="photo" onclick="openPhoto('image2.jpg')">
+        <img src="image2.jpeg" alt="Our Special Moment">
+      </div>
+      <div class="photo" onclick="openPhoto('image3.jpg')">
+        <img src="image3.jpeg" alt="Anniversary Celebration">
+      </div>
+      <div class="photo" onclick="openPhoto('image4.jpg')">
+        <img src="image4.jpeg" alt="Together Forever">
+      </div>
+      <div class="photo" onclick="openPhoto('image5.jpg')">
+        <img src="image5.jpeg" alt="Another Happy Moment">
+      </div>
+      <div class="photo" onclick="openPhoto('image6.jpg')">
+        <img src="image6.jpeg" alt="Another Beautiful Place">
+      </div>
+      <div class="photo" onclick="openPhoto('image7.jpg')">
+        <img src="image7.jpeg" alt="Our Happy Adventure">
+      </div>
+      <div class="photo" onclick="openPhoto('image8.jpg')">
+        <img src="image8.jpeg" alt="The Best Day Ever">
+      </div>
+    </div>
+
+    <!-- "For You" Button -->
+    <button class="button" onclick="revealProposal()">For You</button>
+
+    <!-- Poetic Proposal Text -->
+    <div class="overlay"></div>
+    <p class="proposal-text">"Our love, like a beautiful star, shines brighter every day, illuminating the path that we walk together. With you, my heart has found its home. Will you walk this journey with me, forever and always?"</p>
+  </div>
+
+  <script>
+    // Open photo in a modal
+    function openPhoto(imageSrc) {
+      alert("You clicked on the photo: " + imageSrc);
+    }
+
+    // Reveal the poetic proposal text with animation
+    function revealProposal() {
+      const proposalText = document.querySelector('.proposal-text');
+      const overlay = document.querySelector('.overlay');
+      proposalText.style.display = 'block';
+      overlay.style.display = 'block';
+      setTimeout(function() {
+        proposalText.style.opacity = 1;
+      }, 100); // Delay opacity transition for smooth effect
+    }
+
+    // Placeholder functions for navigation links
+    function showAboutUs() {
+      alert("About Us: Our love is a journey full of beautiful moments, filled with laughter, joy, and love.");
+    }
+
+    function showMemories() {
+      alert("Our Memories: From spontaneous adventures to quiet evenings, every memory is precious.");
+    }
+
+    function showFuturePlans() {
+      alert("Our Future: A lifetime of happiness, shared dreams, and endless love awaits us.");
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
